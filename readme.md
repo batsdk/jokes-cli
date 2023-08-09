@@ -18,6 +18,6 @@ Before you begin, ensure you have the following installed on your system:
 - ./jokes-cli random
 
 ### Todo List
-- [ ] Get jokes from an external API
+- [x] Get jokes from an external API
 - [ ] Add more commands
 
