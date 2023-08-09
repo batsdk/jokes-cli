@@ -6,9 +6,8 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"math/rand"
-	"os"
-	"time"
+	"io"
+	"net/http"
 
 	"github.com/spf13/cobra"
 )
@@ -27,29 +26,48 @@ func init() {
 	rootCmd.AddCommand(randomCmd)
 }
 
-type Joke map[string][]string
+type Joke struct {
+	ID     string `json:"id"`
+	Joke   string `json:"joke"`
+	Status int    `json:"status"`
+}
 
 func getRandomJoke() {
 
-	rand.Seed(time.Now().UnixNano())
+	var joke Joke
 
-	jsonFilePath := "./jokes.json"
-	jsonData, err := os.ReadFile(jsonFilePath)
+	resBytes := getJokesData("https://icanhazdadjoke.com/")
+	err := json.Unmarshal(resBytes, &joke)
 
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	var jokes Joke
+	fmt.Println(string(joke.Joke))
 
-	err = json.Unmarshal(jsonData, &jokes)
+}
+
+func getJokesData(baseUrl string) []byte {
+	req, err := http.NewRequest(http.MethodGet, baseUrl, nil)
+
 	if err != nil {
 		fmt.Println(err)
-		return
 	}
 
-	maxNumber := len(jokes["jokes"])
-	randomNumber := rand.Intn(maxNumber)
+	req.Header.Add("Accept", "application/json")
+	req.Header.Add("User-Agent", "Jokes CLI")
 
-	fmt.Println(jokes["jokes"][randomNumber])
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	resBytes, err := io.ReadAll(res.Body)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return resBytes
+
 }
