@@ -1,6 +1,5 @@
 # Jokes-CLI - A Basic CLI Made with Golang
-This application is a simple Command Line Interface (CLI) built with Golang and the Cobra CLI framework. It's designed to retrieve and deliver random jokes from a JSON file containing a collection of jokes. Although the intention is to fetch random jokes from an external API, this functionality has not been implemented as of now.
-
+This application is a simple Command Line Interface (CLI) built with Golang and the Cobra CLI framework. It's designed to retrieve and deliver random jokes from an API containing a collection of jokes.
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your system:

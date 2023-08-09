@@ -1,5 +1,5 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+Copyright © 2023 Shemil Kaweesha <shemil.business@gmail.com>
 */
 package cmd
 
@@ -43,7 +43,7 @@ func getRandomJoke() {
 		fmt.Println(err)
 	}
 
-	fmt.Println(string(joke.Joke))
+	fmt.Println(joke.Joke)
 
 }
 
