@@ -9,7 +9,7 @@ Before you begin, ensure you have the following installed on your system:
 
 
 ## Clone the Repository
-```git clone https://github.com/your-username/your-project.git```
+```git clone https://github.com/dewShemil/jokes-cli.git```
 
 ## Build and Run
 - cd jokes-cli
